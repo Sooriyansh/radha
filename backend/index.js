@@ -23,7 +23,7 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error(err));
-app.post("/signup", (req, res) => {
+app.get("/signup", (req, res) => {
   console.log(req.body);
   res.send({ message: "Form submitted successfully" });
 });
@@ -78,5 +78,6 @@ app.get("/api/leaderboard", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
