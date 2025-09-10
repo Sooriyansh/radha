@@ -4,31 +4,25 @@ function Signup({ setUser }) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const res = await fetch("http://localhost:5000/api/signup", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ name, username }),
-  //   });
-  //   const data = await res.json();
-  //   setUser(data);
-  // };// Example using fetch
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const data = { name, username };
+    const data = { name, username };
 
-  const res = await fetch("https://radha-d10l.onrender.com/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+    try {
+      const res = await fetch("https://radha-d10l.onrender.com/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-  const result = await res.json();
-  console.log(result);
-};
-
+      const result = await res.json();
+      console.log(result);
+      setUser(result);
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
+  };
 
   return (
     <form
@@ -61,4 +55,3 @@ const handleSubmit = async (e) => {
 }
 
 export default Signup;
-
