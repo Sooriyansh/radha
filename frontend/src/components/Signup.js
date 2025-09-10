@@ -4,16 +4,31 @@ function Signup({ setUser }) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch("http://localhost:5000/api/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, username }),
-    });
-    const data = await res.json();
-    setUser(data);
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const res = await fetch("http://localhost:5000/api/signup", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ name, username }),
+  //   });
+  //   const data = await res.json();
+  //   setUser(data);
+  // };// Example using fetch
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const data = { name, username };
+
+  const res = await fetch("https://radha-d10l.onrender.com/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  console.log(result);
+};
+
 
   return (
     <form
@@ -46,3 +61,4 @@ function Signup({ setUser }) {
 }
 
 export default Signup;
+
