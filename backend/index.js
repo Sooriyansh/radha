@@ -9,6 +9,13 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
+
+app.use(cors({
+  origin: "https://hyy.netlify.app",  // आपका frontend URL
+  methods: ["GET","POST"]
+}));
+app.use(express.json());
+
 app.use(bodyParser.json());
 
 // MongoDB Connect
@@ -67,3 +74,4 @@ app.get("/api/leaderboard", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
