@@ -4,9 +4,10 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/leaderboard")
+    fetch("https://radha-d10l.onrender.com/api/leaderboard")
       .then((res) => res.json())
-      .then((data) => setLeaderboard(data));
+      .then((data) => setLeaderboard(data))
+      .catch((err) => console.error("Failed to fetch leaderboard:", err));
   }, []);
 
   return (
@@ -24,7 +25,9 @@ function Leaderboard() {
                 : "hover:bg-pink-50"
             }`}
           >
-            <span>{i + 1}. {u.name}</span>
+            <span>
+              {i + 1}. {u.name}
+            </span>
             <span className="text-sm text-gray-700">
               {u.mala} Mala | High: {u.highScore}
             </span>
