@@ -1,31 +1,20 @@
 import React from "react";
 
 function Counter({ user, setUser }) {
-  // const handleClick = async () => {
-  //   const res = await fetch("http://localhost:5000/api/update", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ username: user.username }),
-  //   });
-  //   const data = await res.json();
-  //   setUser(data);
-  // };
-  // Example using fetch
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleClick = async () => {
+    try {
+      const res = await fetch("https://radha-d10l.onrender.com/api/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: user.username }),
+      });
 
-  const data = { name, username };
-
-  const res = await fetch("https://radha-d10l.onrender.com/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-
-  const result = await res.json();
-  console.log(result);
-};
-
+      const data = await res.json();
+      setUser(data);
+    } catch (error) {
+      console.error("Counter update failed:", error);
+    }
+  };
 
   return (
     <div className="text-center space-y-4">
@@ -52,4 +41,3 @@ const handleSubmit = async (e) => {
 }
 
 export default Counter;
-
