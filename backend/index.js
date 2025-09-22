@@ -67,17 +67,13 @@ app.post("/api/update", async (req, res) => {
 });
 
 // Leaderboard
-app.get("/api/leaderboard", async (req, res) => {
-  try {
-    const leaderboard = await User.find().sort({ highScore: -1, mala: -1 });
-    res.json(leaderboard);
-  } catch (error) {
-    res.status(500).json({ error: "Could not fetch leaderboard" });
-  }
+app.get("/api", async (req, res) => {
+res.send("helo worls");
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
 
